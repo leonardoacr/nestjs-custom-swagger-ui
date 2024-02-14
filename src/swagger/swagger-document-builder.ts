@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { SwaggerUI } from './swagger-ui.class';
-import { swaggerTags } from './swagger-tags/swagger-tags.constant';
+import { _SWAGGER_TAGS } from './swagger-tags/swagger-tags.constants';
 
 export class SwaggerDocumentBuilder {
   constructor(
@@ -26,7 +26,7 @@ export class SwaggerDocumentBuilder {
         'JWTAuthorization',
       );
 
-    swaggerTags.forEach((tag) => {
+    _SWAGGER_TAGS.forEach((tag) => {
       docBuilder.addTag(tag.name, tag.description);
     });
 
@@ -40,8 +40,8 @@ export class SwaggerDocumentBuilder {
 
   public setupSwagger() {
     const document = this.createDocument();
+
     const swaggerUI = new SwaggerUI(this.applicationUrl);
-    console.log('swaggerUI.customOptions', swaggerUI.customOptions);
     SwaggerModule.setup(
       this.swaggerUrl,
       this.app,
