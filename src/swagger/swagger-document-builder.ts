@@ -4,11 +4,7 @@ import { SwaggerUI } from './swagger-ui.class';
 import { _SWAGGER_TAGS } from './swagger-tags/swagger-tags.constants';
 
 export class SwaggerDocumentBuilder {
-  constructor(
-    private readonly app: INestApplication<any>,
-    private readonly applicationUrl: string,
-    private readonly swaggerUrl: string,
-  ) {}
+  constructor(private readonly app: INestApplication<any>) {}
 
   private buildConfig() {
     const docBuilder = new DocumentBuilder()
@@ -41,9 +37,9 @@ export class SwaggerDocumentBuilder {
   public setupSwagger() {
     const document = this.createDocument();
 
-    const swaggerUI = new SwaggerUI(this.applicationUrl);
+    const swaggerUI = new SwaggerUI(process.env.APPLICATION_URL);
     SwaggerModule.setup(
-      this.swaggerUrl,
+      process.env.SWAGGER_URL,
       this.app,
       document,
       swaggerUI.customOptions,
