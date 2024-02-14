@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './app/app.module';
 import { SwaggerDocumentBuilder } from './swagger/swagger-document-builder';
 
 async function bootstrap() {
@@ -7,6 +7,7 @@ async function bootstrap() {
 
   const applicationUrl = 'http://localhost:3000/api';
   const swaggerUrl = 'api/sw';
+
   const swaggerDocumentBuilder = new SwaggerDocumentBuilder(
     app,
     applicationUrl,
